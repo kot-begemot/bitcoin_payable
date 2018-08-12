@@ -3,7 +3,7 @@ module BitcoinPayable::Adapters
 
     def initialize
       if BitcoinPayable.config.testnet
-        raise "Testnet not supported"
+        @url = "https://testnet.blockchain.info"
       else
         @url = "https://blockchain.info"
       end
