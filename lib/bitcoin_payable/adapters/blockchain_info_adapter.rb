@@ -41,7 +41,11 @@ module BitcoinPayable::Adapters
     end
 
     def convert_transactions(transaction, address)
-      confirmations = latest_block["height"].to_i - transaction["block_height"].to_i + 1
+      if transaction["block_height"].nil?
+        confirmations = 0
+      else
+        confirmations = latest_block["height"].to_i - transaction["block_height"].to_i + 1
+      end
 
       {
         txHash: transaction["hash"],
